@@ -1,0 +1,112 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/*
+ * Deals with player collsion with markers
+ * Will take appropriate action on collision (usually disappearing collided marker and spawning next one)
+ */ 
+
+public class MarkerDestroy : MonoBehaviour {
+
+    public FirstMarkerSpawn otherScript;
+    public SecondMarkerSpawn otherScript2;
+    string timeFile;
+
+    // Use this for initialization
+    void Start () {
+        //if (System.IO.File.Exists(timeFile))
+        //{
+        //    System.IO.File.Delete(timeFile);
+        //}
+
+        if (GameSettings.training)
+        {
+            switch (GameSettings.state)
+            {
+                case 1: GameSettings.curMoveMode = GameSettings.nav1; break;
+                case 2: GameSettings.curMoveMode = GameSettings.nav2; break;
+                case 3: GameSettings.curMoveMode = GameSettings.nav3; break;
+            }
+        }
+        else GameSettings.curMoveMode = GameSettings.navMode;
+
+        if (GameSettings.state >= 1 && GameSettings.state <= 3)
+        {
+            switch (GameSettings.curMoveMode)
+            {
+                case 1:
+                    timeFile = GameSettings.practice_partial_dir.FullName + "Time.txt";
+                    break;
+                case 2:
+                    timeFile = GameSettings.practice_discordant_dir.FullName + "Time.txt";
+                    break;
+                default:
+                    timeFile = GameSettings.practice_concordant_dir.FullName + "Time.txt";
+                    break;
+            }
+        }
+        else if (GameSettings.state == 4 || GameSettings.state == 6 || GameSettings.state == 8)
+        {
+            switch (GameSettings.curMoveMode)
+            {
+                case 1:
+                    timeFile = GameSettings.partial_no_landmarks.FullName + "Time.txt";
+                    break;
+                case 2:
+                    timeFile = GameSettings.discordant_no_landmarks.FullName + "Time.txt";
+                    break;
+                default:
+                    timeFile = GameSettings.concordant_no_landmarks.FullName + "Time.txt";
+                    break;
+            }
+        }
+        else if (GameSettings.state == 5 || GameSettings.state == 7 || GameSettings.state == 9)
+        {
+            switch (GameSettings.curMoveMode)
+            {
+                case 1:
+                    timeFile = GameSettings.partial_landmarks.FullName + "Time.txt";
+                    break;
+                case 2:
+                    timeFile = GameSettings.discordant_landmarks.FullName + "Time.txt";
+                    break;
+                default:
+                    timeFile = GameSettings.concordant_landmarks.FullName + "Time.txt";
+                    break;
+            }
+        }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        //if the cube (moving with the player) collides with the start marker
+        if (other.gameObject.CompareTag("Marker"))
+        {
+            System.IO.File.AppendAllText(timeFile, "Start marker time: " + Time.time + "\r\n"); //make a note of that in the data output
+            other.gameObject.SetActive(false); //make start marker disappear
+            otherScript.SpawnFirstMarker(); //call on first marker script to spawn the first marker
+
+            //otherScript2.SpawnSecondArrow();
+        }
+
+        //if the player collides with the first marker, make it disappear and spawn the second marker
+        else if (other.gameObject.CompareTag("FirstMarker"))
+        {
+            other.gameObject.SetActive(false);
+            otherScript2.SpawnSecondMarker();
+        }
+        //if the player collides with the second marker, make it disappear and write that to file
+        else if (other.gameObject.CompareTag("SecondMarker"))
+        {
+            System.IO.File.AppendAllText(timeFile, "Second marker time: " + Time.time + "\r\n");
+            other.gameObject.SetActive(false);
+        }
+
+    }
+}

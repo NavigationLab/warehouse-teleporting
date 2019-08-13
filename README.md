@@ -7,7 +7,7 @@ Experiment demonstration videos, data, and other materials related to these expe
 ### The Experimental Task 
 Following the same protocols as in [virtual-teleporting](https://github.com/NavigationLab/virtual-teleporting), experimenters led participants through the [triangle completion task](https://books.google.com/books?id=zN_WAgAAQBAJ&pg=PA86) using both the "Partially Concordant" and "Discordant" teleporting interfaces. Two additions were made:
 1. Triangle path lengths were varied between "1x" and "4x" conditions.
-2. The area of the environment was varied between 1406m^2 and 5625m^2.
+2. The area of the environment was varied between 1406m<sup>2</sup> and 5625m<sup>2</sup>.
 
 ### Usage
 This project may be used to replicate the results found in our presented work. Two versions of the application are provided:

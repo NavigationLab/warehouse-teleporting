@@ -2,7 +2,7 @@
 
 This project is part of the second in a series of studies conducted at the Iowa State University [Navigation Lab](https://navlab.psych.iastate.edu/) focusing on spatial cognition in virtual reality. For a general overview of the project and details on the first study, see [virtual-teleporting](https://github.com/NavigationLab/virtual-teleporting).
 
-Experiment demonstration videos, data, and other materials related to these experiments will be made available on [osf.io](https://osf.io/) over the coming months.
+Experiment demonstration videos, data, and other materials related to this experiment are available on the [Open Science Framework](https://osf.io/83vty/).
 
 ### The Experimental Task 
 Following the same protocols as in [virtual-teleporting](https://github.com/NavigationLab/virtual-teleporting), experimenters led participants through the [triangle completion task](https://books.google.com/books?id=zN_WAgAAQBAJ&pg=PA86) using both the "Partially Concordant" and "Discordant" teleporting interfaces. Two additions were made:
@@ -11,7 +11,7 @@ Following the same protocols as in [virtual-teleporting](https://github.com/Navi
 
 ### Usage
 This project may be used to replicate the results found in our presented work. Two versions of the application are provided:
-1. To run the application as was done in our experiments, a compiled version is provided. Simply download the project and run the "WarehouseTeleport.exe" executable file inside the build folder.
+1. To just run the application as was done in our experiments, a [compiled build for Windows](https://osf.io/tquy2/) is available. Simply download the project and run the "WarehouseTeleport.exe" executable file.
 
 2. To view source code or make changes to the project, you will need to open the project in Unity. The project was developed in and is known to work with Unity v2018.2.14f1, though it should be compatible with any subsequent versions at the time of this writing with only minor modifications. The experiment workflow including triangle poles, teleport interfaces, and a sample environment are present, but certain assets could not be legally included due to licensing constraints. To run the full experiment application from source, you will need to buy and integrate the [Big Warehouse Pack](https://assetstore.unity.com/packages/3d/environments/industrial/big-warehouse-pack-96082) from the Unity Asset Store.
 
